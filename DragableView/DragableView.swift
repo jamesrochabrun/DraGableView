@@ -17,17 +17,21 @@ protocol DragableViewDelegate: class {
 enum PresentationState {
     case minimized
     case maximized
-    case maxAllowDraging
 }
 
 class DragableView: UIView {
     
     static let maxTranslationPointY: CGFloat = 200
+    static let appropiateVelocity: CGFloat = 500
     @IBOutlet weak var zizouView: UIImageView!
     
     weak var delegate: DragableViewDelegate?
     
-    private var presentationState: PresentationState = .minimized
+    private var presentationState: PresentationState = .minimized {
+        didSet {
+            self.handlePresesntationState(presentationState)
+        }
+    }
     
     @IBOutlet weak var upView: UIView!
     @IBOutlet weak var downView: UIView!
@@ -72,32 +76,48 @@ class DragableView: UIView {
         presentationState = .minimized
     }
     
+    func handlePresesntationState(_ state: PresentationState) {
+        
+        UIView.animate(withDuration: 0.5) {
+            switch state {
+            case .minimized:
+                self.upView.alpha = 1
+                self.downView.alpha = 0
+                self.zizouView.alpha = 0
+            case .maximized:
+                self.upView.alpha = 0
+                self.downView.alpha = 1
+                self.zizouView.alpha = 1
+            }
+        }
+    }
+    
     fileprivate func handlePanEnded(_ gesture: UIPanGestureRecognizer) {
         
         let translation = gesture.translation(in: self.superview)
         let velocity = gesture.velocity(in: self.superview)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.transform = .identity
-            
-            if translation.y < -DragableView.maxTranslationPointY ||
-                velocity.y < -500 {
-                self.delegate?.maximizeView()
-            } else {
-                self.delegate?.minimizeView()
-                self.upView.alpha = 1
-               // self.zizouView.alpha = 0
-                self.downView.alpha = 0
-            }
+            let needToMaximize = translation.y < -DragableView.maxTranslationPointY ||
+                velocity.y < -DragableView.appropiateVelocity
+            needToMaximize ? self.maximize() : self.minimize()
         })
     }
     
     fileprivate func handlePanchanged(_ gesture: UIPanGestureRecognizer) {
-        
-        let translation = gesture.translation(in: self.superview)
-        self.transform = CGAffineTransform(translationX: 0, y: translation.y)
-        self.upView.alpha = 1 + translation.y / DragableView.maxTranslationPointY
-     //   self.zizouView.alpha = -translation.y / DragableView.maxTranslationPointY
-        self.downView.alpha = -translation.y / DragableView.maxTranslationPointY
+
+        switch presentationState {
+        case .maximized:
+            let translation = gesture.translation(in: self.superview)
+            guard translation.y > 0 else { return }
+            self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        case .minimized:
+            let translation = gesture.translation(in: self.superview)
+            self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+            self.upView.alpha = 1 + translation.y / DragableView.maxTranslationPointY
+            self.zizouView.alpha = -translation.y / DragableView.maxTranslationPointY
+            self.downView.alpha = -translation.y / DragableView.maxTranslationPointY
+        }
     }
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
