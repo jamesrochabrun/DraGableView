@@ -56,13 +56,16 @@ class DragableView: UIView {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.cornerRadius = 15
-        
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
+        setUpGestures()
+    }
+    
+    private func setUpGestures() {
         self.upView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
         self.upView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(maximize)))
         self.downView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(minimize)))
         self.downView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
-
     }
 
     //MARK: - the good stuff

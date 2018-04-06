@@ -24,8 +24,8 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: DragableViewDelegate {
+    
     func maximizeView() {
-        
         //70 represents the space on top
         dragableViewtopAnchor.constant = -self.view.frame.height + 70
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
