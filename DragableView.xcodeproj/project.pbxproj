@@ -12,6 +12,8 @@
 		090A6FAD2076C08800FB8DF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 090A6FAB2076C08800FB8DF9 /* Main.storyboard */; };
 		090A6FAF2076C08800FB8DF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 090A6FAE2076C08800FB8DF9 /* Assets.xcassets */; };
 		090A6FB22076C08800FB8DF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 090A6FB02076C08800FB8DF9 /* LaunchScreen.storyboard */; };
+		090A6FBA2076CDFA00FB8DF9 /* DragableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090A6FB92076CDFA00FB8DF9 /* DragableView.swift */; };
+		090A6FBC2076CF0D00FB8DF9 /* DragableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090A6FBB2076CF0D00FB8DF9 /* DragableView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		090A6FAE2076C08800FB8DF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		090A6FB12076C08800FB8DF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		090A6FB32076C08800FB8DF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		090A6FB92076CDFA00FB8DF9 /* DragableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragableView.swift; sourceTree = "<group>"; };
+		090A6FBB2076CF0D00FB8DF9 /* DragableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DragableView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				090A6FA72076C08800FB8DF9 /* AppDelegate.swift */,
 				090A6FA92076C08800FB8DF9 /* ViewController.swift */,
+				090A6FB92076CDFA00FB8DF9 /* DragableView.swift */,
+				090A6FBB2076CF0D00FB8DF9 /* DragableView.xib */,
 				090A6FAB2076C08800FB8DF9 /* Main.storyboard */,
 				090A6FAE2076C08800FB8DF9 /* Assets.xcassets */,
 				090A6FB02076C08800FB8DF9 /* LaunchScreen.storyboard */,
@@ -125,6 +131,7 @@
 			files = (
 				090A6FB22076C08800FB8DF9 /* LaunchScreen.storyboard in Resources */,
 				090A6FAF2076C08800FB8DF9 /* Assets.xcassets in Resources */,
+				090A6FBC2076CF0D00FB8DF9 /* DragableView.xib in Resources */,
 				090A6FAD2076C08800FB8DF9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +145,7 @@
 			files = (
 				090A6FAA2076C08800FB8DF9 /* ViewController.swift in Sources */,
 				090A6FA82076C08800FB8DF9 /* AppDelegate.swift in Sources */,
+				090A6FBA2076CDFA00FB8DF9 /* DragableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
